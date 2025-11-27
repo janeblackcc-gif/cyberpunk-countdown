@@ -6,11 +6,11 @@ import CyberpunkCountdown from './CyberpunkCountdown';
  */
 function App() {
   // 示例 1: 使用默认配置（倒计时 2 天）
-  return <CyberpunkCountdown />;
+  //return <CyberpunkCountdown />;
 
   // 示例 2: 自定义目标日期
-  // const customDate = new Date('2025-12-31T23:59:59');
-  // return <CyberpunkCountdown targetDate={customDate} />;
+  const customDate = new Date('2025-12-21T07:30:00');
+  return <CyberpunkCountdown targetDate={customDate} />;
 
   // 示例 3: 设置为某个产品发布日期
   // const productLaunchDate = new Date('2025-06-15T00:00:00');
