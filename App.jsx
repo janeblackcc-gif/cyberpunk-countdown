@@ -9,7 +9,7 @@ function App() {
   //return <CyberpunkCountdown />;
 
   // 示例 2: 自定义目标日期
-  const customDate = new Date('2025-12-21T07:30:00');
+  const customDate = new Date('2025-12-28T08:00:00');
   return <CyberpunkCountdown targetDate={customDate} />;
 
   // 示例 3: 设置为某个产品发布日期

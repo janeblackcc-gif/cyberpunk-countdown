@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Zap, Cpu, Trophy } from 'lucide-react';
-import logoImg from './assets/logo.png'; // 确保你已经把 logo.png 放进了 src/assets/ 文件夹
+import { Zap, Cpu } from 'lucide-react';
+import logoImg from './assets/logo.png';
 
 /**
- * CyberpunkCountdown - YSRC 深圳战队出征版
+ * HuangpuCountdown - 黄埔马拉松科技版
  *
  * @description
- * 专为江门马拉松定制的黑金风格倒计时。
- * - 核心色调：黑金 (Yellow-400) + 红色点缀
- * - 视觉重点：战队 Logo、誓师口号、倒计时
+ * 专为黄埔马拉松定制的科技风格倒计时。
+ * - 核心色调：科技青 (Cyan-400) + 活力绿 (Lime-400)
+ * - 视觉重点：智慧科技、运动活力、精准倒计时
+ * - 主题：Technology & Vitality
  */
 const CyberpunkCountdown = ({ targetDate: propTargetDate }) => {
   // ============ State Management ============
@@ -75,19 +76,19 @@ const CyberpunkCountdown = ({ targetDate: propTargetDate }) => {
 
   // ============ Render ============
   return (
-    // 背景保持深黑，但选中文本颜色改为黄色系
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center p-4 relative overflow-hidden font-mono selection:bg-yellow-500 selection:text-black">
+    // 深海军蓝背景，选中文本为科技青色
+    <div className="min-h-screen bg-[#0B1120] flex items-center justify-center p-4 relative overflow-hidden font-mono selection:bg-cyan-400 selection:text-black">
 
       {/* ========== Custom Styles ========== */}
       <CyberpunkStyles />
 
       {/* ========== Background Effects ========== */}
       <BackgroundGrid />
-      <div className="absolute inset-0 scanlines z-10" />
+      <div className="absolute inset-0 scanlines z-10" aria-hidden="true" />
 
       {/* ========== Main Card ========== */}
-      {/* 边框颜色调整为深黄色/金色 */}
-      <div className="relative z-20 w-full max-w-5xl border border-yellow-900/30 bg-[#0a0a0e]/80 backdrop-blur-sm p-8 md:p-12 cyber-box-shadow">
+      {/* 玻璃态容器 - 科技青边框 */}
+      <div className="relative z-20 w-full max-w-5xl border border-cyan-500/30 bg-[#0a0a0e]/80 backdrop-blur-sm p-8 md:p-12 cyber-box-shadow">
 
         {/* Corner Decorations */}
         <CornerDecorations />
@@ -112,12 +113,10 @@ const CyberpunkCountdown = ({ targetDate: propTargetDate }) => {
 
 /**
  * 自定义 CSS 样式
- * 修改了部分 Glitch 颜色以匹配黑金主题
+ * 科技主题配色 - 减弱 Glitch 效果，增强平滑过渡
  */
 const CyberpunkStyles = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
     .font-cyber {
       font-family: 'Share Tech Mono', monospace;
     }
@@ -136,17 +135,22 @@ const CyberpunkStyles = () => (
       pointer-events: none;
     }
 
+    @keyframes scroll {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 40px; }
+    }
+
     .glitch-text {
       position: relative;
     }
 
-    /* 悬停时触发 - 改为金色高亮 */
+    /* 悬停时触发 - 科技青高亮 */
     .glitch-hover:hover {
       animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-      color: #facc15; /* yellow-400 */
+      color: #22d3ee; /* cyan-400 */
     }
 
-    /* 幽灵层颜色调整为红/金 */
+    /* 幽灵层颜色调整为蓝/紫 */
     .glitch-hover:hover::before {
       content: attr(data-text);
       position: absolute;
@@ -154,7 +158,7 @@ const CyberpunkStyles = () => (
       left: -2px;
       width: 100%;
       height: 100%;
-      color: #ef4444; /* red-500 */
+      color: #3b82f6; /* blue-500 */
       opacity: 0.8;
       animation: glitch-anim-1 2s infinite linear alternate-reverse;
     }
@@ -166,7 +170,7 @@ const CyberpunkStyles = () => (
       left: 2px;
       width: 100%;
       height: 100%;
-      color: #eab308; /* yellow-500 */
+      color: #a855f7; /* purple-500 */
       opacity: 0.8;
       animation: glitch-anim-2 2s infinite linear alternate-reverse;
     }
@@ -198,73 +202,74 @@ const CyberpunkStyles = () => (
       100% { transform: skew(0deg); }
     }
 
-    /* 阴影改为金色 */
+    /* 阴影改为科技青 */
     .cyber-box-shadow {
       box-shadow:
-        0 0 10px rgba(234, 179, 8, 0.1),
-        inset 0 0 20px rgba(234, 179, 8, 0.05);
+        0 0 10px rgba(34, 211, 238, 0.1),
+        inset 0 0 20px rgba(34, 211, 238, 0.05);
     }
   `}</style>
 );
 
 const BackgroundGrid = () => (
-  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(255,0,0,0.02),rgba(255,0,0,0.06))] z-0 bg-[length:100%_2px,3px_100%] pointer-events-none" />
+  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(255,0,0,0.02),rgba(255,0,0,0.06))] z-0 bg-[length:100%_2px,3px_100%] pointer-events-none" aria-hidden="true" />
 );
 
 /**
- * 卡片四角装饰线 - 改为黄色
+ * 卡片四角装饰线 - 科技青
  */
 const CornerDecorations = () => (
   <>
-    <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-yellow-500" />
-    <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-yellow-500" />
-    <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-yellow-500" />
-    <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-yellow-500" />
+    <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-500" aria-hidden="true" />
+    <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-500" aria-hidden="true" />
+    <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-cyan-500" aria-hidden="true" />
+    <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-500" aria-hidden="true" />
   </>
 );
 
 /**
- * 头部标题区域 - 战队定制版
+ * 头部标题区域 - 黄埔马拉松定制版
  */
 const Header = ({ isOnline }) => (
   <div className="text-center mb-16 relative flex flex-col items-center">
     {/* 赛事 Logo */}
-    <img 
-      src={logoImg} 
-      alt="2025江门马拉松赛" 
-      className="w-auto h-24 md:h-32 mb-6 animate-pulse drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" 
+    <img
+      src={logoImg}
+      alt="2025 黄埔马拉松"
+      className="w-auto h-16 sm:h-20 md:h-28 lg:h-32 mb-6 animate-pulse drop-shadow-[0_0_15px_rgba(34,211,238,0.6)]"
+      aria-hidden="false"
     />
 
-    {/* 战队铭牌 */}
-    <div className="inline-flex items-center gap-2 text-yellow-400 text-sm md:text-base font-bold tracking-[0.2em] uppercase mb-6 border-y-2 border-yellow-400/50 px-6 py-2 bg-yellow-400/10 backdrop-blur-md">
-      <Trophy size={16} className="text-yellow-300" />
-      <span>YSRC-SHENZHEN TEAM</span>
-      <Trophy size={16} className="text-yellow-300" />
+    {/* 赛事铭牌 */}
+    <div className="inline-flex items-center gap-2 text-cyan-400 text-sm md:text-base font-bold tracking-[0.2em] uppercase mb-6 border-y-2 border-cyan-400/50 px-6 py-2 bg-cyan-400/10 backdrop-blur-md" role="banner">
+      <Zap size={16} className="text-lime-400" aria-hidden="true" />
+      <span>HUANGPU MARATHON 2025</span>
+      <Zap size={16} className="text-lime-400" aria-hidden="true" />
     </div>
 
-    {/* 主标题 - 战斗口号 */}
+    {/* 主标题 - 赛事口号 */}
     <h1
-      className="font-sans text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 glitch-text uppercase tracking-wider drop-shadow-[0_2px_10px_rgba(234,179,8,0.5)]"
-      data-text={isOnline ? "恭喜完赛！PB达成！" : "决战江门 势必PB"}
+      className="font-sans text-4xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 glitch-text uppercase tracking-wider drop-shadow-[0_2px_10px_rgba(34,211,238,0.5)]"
+      data-text={isOnline ? "SEE YOU NEXT YEAR!" : "TO HUANGPU, RUN TO HAPPINESS"}
     >
-      {isOnline ? "恭喜完赛！PB达成！" : "决战江门 势必PB"}
+      {isOnline ? "SEE YOU NEXT YEAR!" : "TO HUANGPU, RUN TO HAPPINESS"}
     </h1>
 
     {/* 副标题 - 比赛时间 */}
     {!isOnline && (
-      <p className="text-yellow-200/80 font-mono text-sm md:text-base mt-4 tracking-widest uppercase border-b border-yellow-500/30 pb-2">
-        <span className="text-yellow-500 mr-2">►</span>
-        Target: 2025.12.21 07:30 AM · 全军出击
-        <span className="text-yellow-500 ml-2">◄</span>
+      <p className="text-cyan-200/80 font-mono text-sm md:text-base mt-4 tracking-widest uppercase border-b border-cyan-500/30 pb-2">
+        <span className="text-lime-400 mr-2">►</span>
+        Target: 2025.12.28 08:00 AM · TECHNOLOGY & VITALITY
+        <span className="text-lime-400 ml-2">◄</span>
       </p>
     )}
   </div>
 );
 
 const CountdownDisplay = ({ timeUnits, padZero }) => (
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative">
-    {/* 水平装饰线 - 改为黄色渐变 */}
-    <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-900 to-transparent -z-10 hidden md:block" />
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative" role="timer" aria-live="polite" aria-atomic="true">
+    {/* 水平装饰线 - 科技青渐变 */}
+    <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent -z-10 hidden md:block" aria-hidden="true" />
 
     {timeUnits.map((item, idx) => (
       <TimeBlock
@@ -278,35 +283,35 @@ const CountdownDisplay = ({ timeUnits, padZero }) => (
 );
 
 /**
- * 单个时间单位块 - 黑金版
+ * 单个时间单位块 - 科技版
  */
 const TimeBlock = ({ label, value, index }) => (
-  <div className="group relative flex flex-col items-center">
-    {/* 数字容器 - 修改边框和发光色为黄色 */}
-    <div className="relative w-full bg-black/60 border-2 border-yellow-900/50 group-hover:border-yellow-400 transition-all duration-300 p-6 md:p-8 flex justify-center items-center overflow-hidden backdrop-blur-sm">
-      {/* 悬停发光层 - 改为黄色 */}
-      <div className="absolute inset-0 bg-yellow-500/0 group-hover:bg-yellow-500/10 transition-all duration-300" />
+  <div className="group relative flex flex-col items-center" aria-label={`${value} ${label}`}>
+    {/* 数字容器 - 科技青边框和发光 */}
+    <div className="relative w-full bg-black/60 border-2 border-cyan-500/50 group-hover:border-cyan-400 transition-all duration-300 p-6 md:p-8 flex justify-center items-center overflow-hidden backdrop-blur-sm" aria-hidden="true">
+      {/* 悬停发光层 - 科技青 */}
+      <div className="absolute inset-0 bg-cyan-500/0 group-hover:bg-cyan-500/10 transition-all duration-300" />
 
-      {/* 数字 - 带 Glitch 效果，字体改大，颜色改黄 */}
+      {/* 数字 - 平滑过渡效果 */}
       <span
-        className="font-cyber text-6xl md:text-8xl text-yellow-50 font-bold tracking-tighter glitch-hover transition-all duration-200 group-hover:scale-105 group-hover:text-yellow-400 group-hover:drop-shadow-[0_0_25px_rgba(250,204,21,1)]"
+        className="font-cyber text-6xl md:text-8xl text-cyan-50 font-bold tracking-tighter glitch-hover transition-all duration-200 group-hover:scale-105 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_25px_rgba(34,211,238,1)]"
         data-text={value}
       >
         {value}
       </span>
 
-      {/* 角标装饰 - 改为黄色 */}
-      <div className="absolute top-2 right-2 text-[10px] text-yellow-700/80 group-hover:text-yellow-400 font-mono">
+      {/* 角标装饰 - 科技青 */}
+      <div className="absolute top-2 right-2 text-[10px] text-cyan-500/90 group-hover:text-cyan-400 font-mono">
         #{index + 1}
       </div>
-      {/* 底部进度条 - 改为黄色渐变 */}
-      <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-yellow-900 via-yellow-600 to-yellow-900 group-hover:via-yellow-400 transition-all" />
+      {/* 底部进度条 - 科技青渐变 */}
+      <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-cyan-900 via-cyan-600 to-cyan-900 group-hover:via-cyan-400 transition-all" />
     </div>
 
-    {/* 标签 - 改为黄色系 */}
+    {/* 标签 - 活力绿点缀 */}
     <div className="mt-4 flex items-center gap-2">
-      <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(234,179,8,0.8)]" />
-      <span className="text-yellow-600/80 text-sm md:text-base font-bold tracking-[0.3em] group-hover:text-yellow-400 transition-colors font-cyber uppercase">
+      <div className="w-1.5 h-1.5 bg-lime-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(132,204,22,0.8)]" />
+      <span className="text-cyan-600/80 text-sm md:text-base font-bold tracking-[0.3em] group-hover:text-cyan-400 transition-colors font-cyber uppercase">
         {label}
       </span>
     </div>
@@ -316,18 +321,18 @@ const TimeBlock = ({ label, value, index }) => (
 const OnlineState = () => (
   <div className="flex flex-col items-center justify-center py-10 animate-in fade-in duration-1000">
     <div className="relative">
-      <div className="absolute -inset-4 bg-yellow-500/20 blur-xl rounded-full animate-pulse" />
-      <Cpu size={80} className="text-yellow-400 animate-spin relative z-10" style={{ animationDuration: '3s' }} />
+      <div className="absolute -inset-4 bg-cyan-500/20 blur-xl rounded-full animate-pulse" />
+      <Cpu size={80} className="text-cyan-400 animate-spin relative z-10" style={{ animationDuration: '3s' }} />
     </div>
 
-    <div className="mt-8 border-t border-b border-yellow-500/30 py-4 w-full text-center bg-yellow-900/10">
-      <p className="font-cyber text-xl text-yellow-300 tracking-[0.5em] animate-pulse">
-        MISSION ACCOMPLISHED
+    <div className="mt-8 border-t border-b border-cyan-500/30 py-4 w-full text-center bg-cyan-900/10">
+      <p className="font-cyber text-xl text-cyan-300 tracking-[0.5em] animate-pulse">
+        RACE STARTED
       </p>
     </div>
 
     <button
-      className="mt-8 px-8 py-3 bg-yellow-600 hover:bg-yellow-500 text-black font-bold font-cyber tracking-wider transition-all hover:shadow-[0_0_20px_rgba(234,179,8,0.6)]"
+      className="mt-8 px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-black font-bold font-cyber tracking-wider transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)]"
       onClick={() => console.log('System accessed')}
     >
       VIEW RESULTS
